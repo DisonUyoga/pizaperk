@@ -7,7 +7,6 @@ import Image from "next/image";
 import { Text, useDisclosure } from "@chakra-ui/react";
 import DrawerComponent from "../Drawer";
 import { useAppSelector } from "@/lib/hook";
-import logoImg from "@/assets/pizzaman.png";
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -32,14 +31,14 @@ const NavBar = () => {
       link: "/profile",
     },
   ];
- 
+
   return (
     <>
       <nav className="bg-primary p-4">
         <div className="container mx-auto flex items-center justify-between">
           <div className="flex gap-2 items-center">
             <Image
-              src={logoImg}
+              src={"/pizzaman.png"}
               alt="logo"
               width={100}
               height={100}
