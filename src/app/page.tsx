@@ -21,7 +21,7 @@ interface HomeProps {
 }
 
 export default async function Home({ searchParams: { session } }: HomeProps) {
-  if (session === "null") {
+  if (session === "null" || session === undefined) {
     return redirect("/login");
   }
   const { data, error } = await createClient()
