@@ -3,8 +3,8 @@ import { useSupabaseImageDownLoader } from "@/lib/useSupabaseImageDownLoader";
 import Link from "next/link";
 import React from "react";
 import { menu } from "@/data";
-import ProductImage from "../ui/ProductImage";
-import Spinner from "../ui/Spinner";
+import ProductImage from "@/components/ProductImage";
+import Spinner from "@/components/ui/Spinner";
 interface CategoryCardProps {
   category: Tables<"categories">;
 }
