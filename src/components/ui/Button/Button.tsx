@@ -115,7 +115,7 @@ function ButtonComponent() {
         w={"100%"}
         alignContent={"center"}
         justifyContent={"space-between"}
-        columnGap={2}
+        columnGap={1}
       >
         <Image
           borderRadius="full"
@@ -123,7 +123,9 @@ function ButtonComponent() {
           src="/google.png"
           alt="google login"
         />
-        <Text color={"#FF9C01"}>Login with Google</Text>
+        <Text fontSize={"xs"} color={"#FF9C01"}>
+          Login with Google
+        </Text>
       </Flex>
     </Button>
   );
