@@ -67,7 +67,6 @@ const MenuPage = async () => {
           bg="#161622"
           position={"relative"}
           py={"20px"}
-          h={"100vh"}
         >
           {categories &&
             data &&

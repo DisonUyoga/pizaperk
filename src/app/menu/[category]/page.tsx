@@ -33,7 +33,7 @@ const CategoryPage = async ({ params: { category } }: CategoryPageProps) => {
       fallback={<Error name={error?.code} message={error?.message} />}
     >
       <Suspense fallback={<Loading />}>
-        <Box p="10px" bg="#161622" h={"100vh"}>
+        <Box p="10px" bg="#161622">
           {data && data[0].categories?.category && (
             <Text
               color={"#fff"}
