@@ -15,6 +15,7 @@ const Loading = () => {
       <Skeleton height="100px" />
       <Skeleton height="100px" />
       <Skeleton height="100px" />
+      <Skeleton height="100px" />
     </SimpleGrid>
   );
 };
