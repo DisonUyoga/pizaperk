@@ -23,10 +23,36 @@ import { priceTag } from "@/lib/priceTage";
 import { discountCalculator } from "@/lib/discountCalculator";
 import _ from "lodash";
 import { isNewProduct } from "@/lib/isNewProduct";
+import toast from "react-hot-toast";
+import { useAppDispatch } from "@/lib/hook";
+import { useRouter } from "next/navigation";
+import { addToCart } from "@/features/slices/cartSlice";
 interface ProductCardProps {
   product: Tables<"products">;
 }
 const ProductCard = ({ product }: ProductCardProps) => {
+  const dispatch = useAppDispatch();
+  const router = useRouter();
+
+  const determineIfItemIsPizza = !!(
+    product?.size_large ||
+    product?.size_medium ||
+    product?.size_small
+  );
+
+  function addProductToCart(product: Tables<"products">) {
+    if (!product) return;
+
+    if (determineIfItemIsPizza) {
+      dispatch(addToCart({ product, size: "XL" }));
+    } else {
+      dispatch(addToCart({ product, size: null }));
+    }
+
+    toast.success("item added to cart");
+
+    // router.push(`/product/${product.id}`);
+  }
   const description = _.truncate(product?.description as string, {
     separator: " ",
     length: 30,
@@ -105,6 +131,8 @@ const ProductCard = ({ product }: ProductCardProps) => {
               variant="solid"
               colorScheme="white"
               bg={"#097733"}
+              _hover={{ opacity: 0.7 }}
+              onClick={() => addProductToCart(product)}
             >
               Add to Cart
             </Button>

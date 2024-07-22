@@ -1,12 +1,20 @@
-import { Skeleton, VStack } from "@chakra-ui/react";
+import { SimpleGrid, Skeleton } from "@chakra-ui/react";
+import React from "react";
 
 const Loading = () => {
   return (
-    <VStack p={4} spacing={10} flex={1} bg="#161622">
+    <SimpleGrid
+      spacing={2}
+      bg="#161622"
+      p="10px"
+      py={"20px"}
+      flex={1}
+      flexDirection={"row"}
+    >
       <Skeleton height="200px" />
-      <Skeleton height="150px" />
-      <Skeleton height="150px" />
-    </VStack>
+      <Skeleton height="100px" />
+      <Skeleton height="100px" />
+    </SimpleGrid>
   );
 };
 
