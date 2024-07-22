@@ -1,6 +1,5 @@
 "use client";
 
-
 import React, { useEffect, useState } from "react";
 import Countdown from "react-countdown";
 
@@ -34,7 +33,7 @@ const CountDown = ({ date }: CountDownProps) => {
         </p>
       )}
       {deliveryTag && (
-        <Countdown className="font-bold text-5xl text-yellow-300" date={date} />
+        <Countdown className="font-bold text-2xl text-yellow-300" date={date} />
       )}
     </div>
   );

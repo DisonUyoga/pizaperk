@@ -5,11 +5,11 @@ const Loading = () => {
   return (
     <SimpleGrid
       spacing={2}
-      minChildWidth="300px"
+      minChildWidth="250px"
       bg="#161622"
       p="10px"
       py={"20px"}
-      h={"100vh"}
+      flex={1}
     >
       <Skeleton height="200px" />
       <Skeleton height="200px" />

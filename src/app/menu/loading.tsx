@@ -9,6 +9,7 @@ const Loading = () => {
       bg="#161622"
       p="10px"
       py={"20px"}
+      flex={1}
     >
       <Skeleton height="100px" />
       <Skeleton height="100px" />

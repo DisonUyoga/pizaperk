@@ -30,9 +30,7 @@ const data = [
 
 interface Props {
   className?: string;
-  // product: Product;
-  // noNameTag?: boolean;
-  // imgProps?: Omit<ImageProps, "src" | "layout" | "placeholder" | "blurDataURL">;
+ 
   variant?: "default" | "slim" | "simple";
 }
 
