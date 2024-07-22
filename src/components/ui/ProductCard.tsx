@@ -38,7 +38,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
       data-aos-anchor-placement="center-bottom"
       data-aos-duration="1500"
     >
-      <Card minW="sm" bg={"#050152"} borderRadius={5}>
+      <Card maxW="sm" bg={"#050152"} borderRadius={5}>
         <CardBody>
           {pizzas[0].img && (
             <Box position={"relative"} w={"100%"} h={"150px"}>

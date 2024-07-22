@@ -4,10 +4,11 @@ import Image from "next/image";
 import cn from "clsx";
 import React, { ComponentProps, FC, useEffect, useState } from "react";
 import s from "./Slider.module.css";
-import Button from "../ui/Button";
+
 import img1 from "@/assets/slide1.png";
 import img2 from "@/assets/slide2.png";
 import img3 from "@/assets/slide2.png";
+import { Button } from "@chakra-ui/react";
 
 const data = [
   {
@@ -60,7 +61,9 @@ const Slider: FC<Props> = ({ className, variant }) => {
         >
           {data[currentSlide].title}
         </h1>
-        {/* <button className="bg-secondary text-white py-4 px-8">Order Now</button> */}
+        <Button variant="solid" bg="#FF9C01">
+          Order Now
+        </Button>
         {/* <Button variant="naked">Order Now</Button> */}
       </div>
       {/* IMAGE CONTAINER  */}

@@ -1,7 +1,7 @@
 "use client";
 import { Tables } from "@/database.types";
 import { useState } from "react";
-import s from "../Featured/Featured.module.css";
+import s from "../components/Featured/Featured.module.css";
 import { featuredProducts } from "@/data";
 import { priceTag } from "@/lib/priceTage";
 import Button from "./HomeButton";

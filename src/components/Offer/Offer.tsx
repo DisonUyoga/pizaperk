@@ -2,12 +2,13 @@
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import CountDown from "../CountDown";
-import Button from "../ui/Button";
+
 import s from "./Offer.module.css";
 import { Tables } from "@/type";
 import { calcDis } from "@/lib/calcDis";
 import ProductImage from "@/components/ProductImage";
 import Aos from "aos";
+import { Button } from "@chakra-ui/react";
 
 interface OfferProps {
   delivery: Tables<"delivery">[];
@@ -16,7 +17,6 @@ interface OfferProps {
 const Offer = ({ delivery, products }: OfferProps) => {
   const [prodctOnOffer, setProductOnOffer] =
     useState<Tables<"products"> | null>();
- 
 
   useEffect(() => {
     function checkProductWithHighestDiscount(p: Tables<"products">[]) {
@@ -72,7 +72,9 @@ const Offer = ({ delivery, products }: OfferProps) => {
 
         {delivery[0]?.countdown && <CountDown date={delivery[0]?.countdown} />}
 
-        {/* <Button variant="naked">Order Now</Button> */}
+        <Button variant="solid" bg="#FF9C01">
+          Order Now
+        </Button>
       </div>
       {/* IMAGE CONTAINER  */}
       <div
