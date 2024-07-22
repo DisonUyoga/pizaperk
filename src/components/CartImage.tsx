@@ -19,13 +19,13 @@ const CartImage = ({ path, fallback, radius }: RemoteImageProps) => {
   return (
     <div>
       {image ? (
-        <Image src={image} alt="" fill className="object-cover " />
+        <Image src={image} alt="" fill className="object-cover rounded" />
       ) : (
         <Image
           src={fallback}
           alt=""
           fill
-          className={`object-cover`}
+          className={`object-cover rounded`}
           style={{
             filter: "blur(20px)",
           }}

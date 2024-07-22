@@ -27,7 +27,7 @@ const CartCard = ({ cartItem }: CartCardProps) => {
     <Flex
       alignContent={"center"}
       justifyContent={"space-between"}
-      borderRadius={"0"}
+      borderRadius={5}
       bg={"#050152"}
       p={"10px"}
       columnGap={2}
