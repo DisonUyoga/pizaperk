@@ -12,6 +12,8 @@ const Loading = () => {
       flexDirection={"row"}
     >
       <Skeleton height="200px" />
+      <Skeleton height="150px" />
+      <Skeleton height="150px" />
       <Skeleton height="100px" />
       <Skeleton height="100px" />
     </SimpleGrid>

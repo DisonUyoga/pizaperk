@@ -13,6 +13,7 @@ import { downloadImage } from "./action";
 import { Stack } from "@chakra-ui/react";
 import Slider from "@/components/Slider";
 import Offer from "@/components/Offer";
+import { currentUser, auth } from "@clerk/nextjs/server";
 
 interface HomeProps {
   searchParams: {
@@ -20,10 +21,19 @@ interface HomeProps {
   };
 }
 
-export default async function Home({ searchParams: { session } }: HomeProps) {
-  if (session === "null" || session === undefined) {
-    return redirect("/login");
+export default async function Home() {
+  const user = await currentUser();
+  const { data: session, error: sessionError } =
+    await createClient().auth.getSession();
+  if (!user) {
+   
+    return redirect("/sign-in");
   }
+  if (!session.session) {
+    return redirect("/sign-in");
+  }
+
+  
   const { data, error } = await createClient()
     .from("products")
     .select("*, categories(*)")
@@ -38,7 +48,7 @@ export default async function Home({ searchParams: { session } }: HomeProps) {
       fallback={<Error name={error?.code} message={error?.message} />}
     >
       <Suspense fallback={<Loading />}>
-        {data && delivery && (
+        {data && delivery && data?.length > 0 && delivery?.length > 0 && (
           <Stack bg={"#161622"}>
             <Offer delivery={delivery as any} products={data} />
 

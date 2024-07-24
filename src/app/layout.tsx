@@ -7,6 +7,13 @@ import { ChakraProvider } from "@chakra-ui/react";
 import NavBar from "@/components/ui/NavBar";
 import "aos/dist/aos.css";
 import AosProvider from "@/components/AosProvider";
+import {
+  ClerkProvider,
+  SignInButton,
+  SignedIn,
+  SignedOut,
+  UserButton,
+} from "@clerk/nextjs";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,23 +31,25 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <ChakraProvider>
-          <ReduxProvider>
-            <AosProvider>
-              <NavBar />
-              {children}
-              <Toaster
-                position="top-center"
-                toastOptions={{
-                  duration: 3000,
-                  success: {
-                    duration: 5000,
-                  },
-                }}
-              />
-            </AosProvider>
-          </ReduxProvider>
-        </ChakraProvider>
+        <ClerkProvider>
+          <ChakraProvider>
+            <ReduxProvider>
+              <AosProvider>
+                <NavBar />
+                {children}
+                <Toaster
+                  position="top-center"
+                  toastOptions={{
+                    duration: 3000,
+                    success: {
+                      duration: 5000,
+                    },
+                  }}
+                />
+              </AosProvider>
+            </ReduxProvider>
+          </ChakraProvider>
+        </ClerkProvider>
       </body>
     </html>
   );

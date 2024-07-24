@@ -4,9 +4,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCoffee, faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 import Image from "next/image";
-import { Text, useDisclosure } from "@chakra-ui/react";
+import { Box, Text, useDisclosure } from "@chakra-ui/react";
 import DrawerComponent from "../Drawer";
 import { useAppSelector } from "@/lib/hook";
+import { UserButton } from "@clerk/nextjs";
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -68,6 +69,7 @@ const NavBar = () => {
             >
               Cart({totalQuantity})
             </Text>
+            <UserButton />
           </div>
           <div className="md:hidden">
             <button onClick={() => setIsOpen(!isOpen)}>
@@ -102,6 +104,7 @@ const NavBar = () => {
           >
             Cart({totalQuantity})
           </Text>
+          <UserButton />
         </div>
       </nav>
       <DrawerComponent isOpen={openDrawer} onClose={onClose} />
