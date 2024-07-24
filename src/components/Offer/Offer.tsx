@@ -65,7 +65,11 @@ const Offer = ({ delivery, products }: OfferProps) => {
         >
           PizzaPerk
         </h1>
-        <p className={s.offer_hero_title}>
+        <p
+          className={s.offer_hero_title}
+          data-aos="zoom-in"
+          data-aos-duration="2000"
+        >
           &quot;Discover PizzaPerk: Your Crave-Worthy Shortcut to Delicious
           Pizza Bliss!&quot;
         </p>
