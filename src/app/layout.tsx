@@ -14,6 +14,7 @@ import {
   SignedOut,
   UserButton,
 } from "@clerk/nextjs";
+import Footer from "@/components/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -37,6 +38,7 @@ export default function RootLayout({
               <AosProvider>
                 <NavBar />
                 {children}
+                <Footer />
                 <Toaster
                   position="top-center"
                   toastOptions={{
