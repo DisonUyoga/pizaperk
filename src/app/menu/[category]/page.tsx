@@ -1,6 +1,13 @@
 import ProductCard from "@/components/ui/ProductCard";
 import { Tables } from "@/type";
-import { Box, SimpleGrid, Skeleton, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Flex,
+  SimpleGrid,
+  Skeleton,
+  Text,
+} from "@chakra-ui/react";
 
 import toast from "react-hot-toast";
 import { redirect } from "next/navigation";
@@ -9,7 +16,9 @@ import { ErrorBoundary } from "react-error-boundary";
 import Error from "../error";
 import { Suspense } from "react";
 import Loading from "../loading";
-import { currentUser } from "@clerk/nextjs/server";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import BackButton from "@/components/BackButton";
 
 interface CategoryPageProps {
   params: {
@@ -17,16 +26,6 @@ interface CategoryPageProps {
   };
 }
 const CategoryPage = async ({ params: { category } }: CategoryPageProps) => {
-  const user = await currentUser();
-  const { data: session, error: sessionError } =
-    await createClient().auth.getSession();
-  // check whether clerk user is logged in
-  if (!user) {
-    return redirect("/sign-in");
-  }
-  if (!session.session) {
-    return redirect("/sign-in");
-  }
   if (!category) redirect("/menu");
   const { data, error } = await createClient()
     .from("products")
@@ -45,6 +44,7 @@ const CategoryPage = async ({ params: { category } }: CategoryPageProps) => {
     >
       <Suspense fallback={<Loading />}>
         <Box p="10px" bg="#161622" flex={1}>
+          <BackButton />
           {data && data[0].categories?.category && (
             <Text
               color={"#fff"}
