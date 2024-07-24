@@ -72,7 +72,13 @@ const Offer = ({ delivery, products }: OfferProps) => {
 
         {delivery[0]?.countdown && <CountDown date={delivery[0]?.countdown} />}
 
-        <Button variant="solid" bg="#FF9C01">
+        <Button
+          variant="solid"
+          bg="#FF9C01"
+          className={s.offer_title}
+          data-aos="zoom-out-up"
+          data-aos-duration="2000"
+        >
           Order Now
         </Button>
       </div>

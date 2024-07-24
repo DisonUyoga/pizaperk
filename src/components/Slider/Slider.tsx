@@ -30,7 +30,7 @@ const data = [
 
 interface Props {
   className?: string;
- 
+
   variant?: "default" | "slim" | "simple";
 }
 
@@ -59,7 +59,13 @@ const Slider: FC<Props> = ({ className, variant }) => {
         >
           {data[currentSlide].title}
         </h1>
-        <Button variant="solid" bg="#FF9C01">
+        <Button
+          variant="solid"
+          bg="#FF9C01"
+          className={s.offer_title}
+          data-aos="zoom-out-up"
+          data-aos-duration="2000"
+        >
           Order Now
         </Button>
         {/* <Button variant="naked">Order Now</Button> */}
