@@ -82,14 +82,14 @@ const NavBar = () => {
         </div>
         <div
           className={`flex flex-col gap-4 md:hidden transition-all duration-300 ${
-            isOpen ? "block animate-slideDown" : "hidden animate-slideUp"
+            isOpen ? "block animate-slideDown " : "hidden animate-slideUp"
           }`}
         >
           {nav_links.map((l) => (
             <Link
               href={l.link}
               key={l.display}
-              className="text-gray-100 hover:text-white"
+              className="text-gray-100 hover:text-white "
               onClick={() => setIsOpen(!isOpen)}
             >
               {l.display}
