@@ -12,10 +12,10 @@ interface ErrorProps {
 }
 const Error = ({ name, message }: ErrorProps) => {
   return (
-    <Alert status="error" h={"100vh"}>
+    <Alert status="error" flex={1}>
       <AlertIcon />
-      <AlertTitle>Something went wrong!!</AlertTitle>
-      <AlertDescription>{message}</AlertDescription>
+      <AlertTitle textAlign={"center"}>Something went wrong!!</AlertTitle>
+      {message && <AlertDescription>{message}</AlertDescription>}
     </Alert>
   );
 };
