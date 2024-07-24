@@ -28,7 +28,7 @@ const Footer = () => {
         </Text>
         <Stack direction="row" spacing={6}>
           <Link href="/">Home</Link>
-          <Link href="/menu">About</Link>
+          <Link href="/menu">Menu</Link>
           <Link href="#">Services</Link>
           <Link href="#">Contact</Link>
         </Stack>
