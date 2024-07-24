@@ -25,15 +25,14 @@ export default async function Home() {
   const user = await currentUser();
   const { data: session, error: sessionError } =
     await createClient().auth.getSession();
+  // check whether clerk user is logged in
   if (!user) {
-   
     return redirect("/sign-in");
   }
   if (!session.session) {
     return redirect("/sign-in");
   }
 
-  
   const { data, error } = await createClient()
     .from("products")
     .select("*, categories(*)")
