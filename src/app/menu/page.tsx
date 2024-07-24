@@ -5,7 +5,7 @@ import { menu } from "@/data";
 import toast from "react-hot-toast";
 
 import { useAppSelector } from "@/lib/hook";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import CategoryCard from "@/components/CategoryCard";
 import NextLink from "next/link";
 import {
@@ -28,8 +28,19 @@ import Loading from "../loading";
 import { ErrorBoundary } from "react-error-boundary";
 import Error from "./error";
 import { Tables } from "@/database.types";
+import { currentUser } from "@clerk/nextjs/server";
 
 const MenuPage = async () => {
+  const user = await currentUser();
+  const { data: session, error: sessionError } =
+    await createClient().auth.getSession();
+  // check whether clerk user is logged in
+  if (!user) {
+    return redirect("/sign-in");
+  }
+  if (!session.session) {
+    return redirect("/sign-in");
+  }
   const { data: categories, error } = await createClient()
     .from("categories")
     .select("*")

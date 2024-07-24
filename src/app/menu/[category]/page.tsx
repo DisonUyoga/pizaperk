@@ -9,6 +9,7 @@ import { ErrorBoundary } from "react-error-boundary";
 import Error from "../error";
 import { Suspense } from "react";
 import Loading from "../loading";
+import { currentUser } from "@clerk/nextjs/server";
 
 interface CategoryPageProps {
   params: {
@@ -16,6 +17,16 @@ interface CategoryPageProps {
   };
 }
 const CategoryPage = async ({ params: { category } }: CategoryPageProps) => {
+  const user = await currentUser();
+  const { data: session, error: sessionError } =
+    await createClient().auth.getSession();
+  // check whether clerk user is logged in
+  if (!user) {
+    return redirect("/sign-in");
+  }
+  if (!session.session) {
+    return redirect("/sign-in");
+  }
   if (!category) redirect("/menu");
   const { data, error } = await createClient()
     .from("products")
