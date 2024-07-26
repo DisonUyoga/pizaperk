@@ -23,7 +23,7 @@ import ProductImage from "@/components/ProductImage";
 import { pizzas } from "@/data";
 import AddToCartBtn from "@/components/AddToCartBtn";
 import { priceTag } from "@/lib/priceTage";
-import Loading from "./loading";
+import Loading from "../../loading";
 
 interface ProductProps {
   params: {
