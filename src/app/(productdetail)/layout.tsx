@@ -1,4 +1,5 @@
 import { createClient } from "@/lib/supabase";
+import { Stack } from "@chakra-ui/react";
 import { currentUser } from "@clerk/nextjs/server";
 
 export default async function RootLayout({
@@ -9,5 +10,5 @@ export default async function RootLayout({
   const user = await currentUser();
   const { data: session, error: sessionError } =
     await createClient().auth.getSession();
-  return <main>{children}</main>;
+  return <Stack h="100vh">{children}</Stack>;
 }

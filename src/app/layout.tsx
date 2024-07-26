@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import ReduxProvider from "@/components/ReduxProvider";
 import { Toaster } from "react-hot-toast";
-import { ChakraProvider } from "@chakra-ui/react";
+import { ChakraProvider, Stack } from "@chakra-ui/react";
 import NavBar from "@/components/ui/NavBar";
 import "aos/dist/aos.css";
 import AosProvider from "@/components/AosProvider";
@@ -43,9 +43,11 @@ export default async function RootLayout({
           <ChakraProvider>
             <ReduxProvider>
               <AosProvider>
-                <NavBar />
-                {children}
-                <Footer />
+                <Stack h={"100vh"} bg={"#161622"}>
+                  <NavBar />
+                  {children}
+                  <Footer />
+                </Stack>
                 <Toaster
                   position="top-center"
                   toastOptions={{

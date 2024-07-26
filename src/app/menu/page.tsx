@@ -90,7 +90,7 @@ const MenuPage = async () => {
                       <Heading
                         as="h3"
                         size="sm"
-                        // position={"absolute"}
+                        position={"absolute"}
                         zIndex={50}
                         color={"white"}
                       >

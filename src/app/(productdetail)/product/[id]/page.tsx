@@ -23,6 +23,7 @@ import ProductImage from "@/components/ProductImage";
 import { pizzas } from "@/data";
 import AddToCartBtn from "@/components/AddToCartBtn";
 import { priceTag } from "@/lib/priceTage";
+import Loading from "./loading";
 
 interface ProductProps {
   params: {
@@ -39,7 +40,7 @@ const ProductDetail = async ({ params: { id } }: ProductProps) => {
   if (!product) return notFound();
 
   return (
-    <Suspense fallback={<ProductSkeleton />}>
+    <Suspense fallback={<Loading />}>
       {product && (
         <Box
           flex={1}
@@ -48,7 +49,6 @@ const ProductDetail = async ({ params: { id } }: ProductProps) => {
           h={"100vh"}
           px="10px"
           py="20px"
-          position={"relative"}
         >
           <Box
             maxW="5xl"
@@ -57,6 +57,7 @@ const ProductDetail = async ({ params: { id } }: ProductProps) => {
             bg={"#050152"}
             borderRadius="lg"
             shadow="md"
+            position={"relative"}
           >
             <Flex
               direction={{ base: "column", md: "row" }}
@@ -90,10 +91,10 @@ const ProductDetail = async ({ params: { id } }: ProductProps) => {
                   </AddToCartBtn>
                   <Flex
                     position="absolute"
-                    top={14}
+                    top={10}
                     justify={"center"}
                     alignItems={"center"}
-                    left={8}
+                    left={4}
                     gap={1}
                   >
                     <BackButton />
@@ -109,13 +110,3 @@ const ProductDetail = async ({ params: { id } }: ProductProps) => {
 };
 
 export default ProductDetail;
-
-function ProductSkeleton() {
-  return (
-    <Center bg="#161622" p="10px" py={"20px"} flex={1}>
-      <Skeleton height="200px" />
-      <Skeleton height="50px" />
-      <Skeleton height="50px" />
-    </Center>
-  );
-}
