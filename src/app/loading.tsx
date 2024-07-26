@@ -4,7 +4,7 @@ import { Container } from "postcss";
 const Loading = () => {
   return (
     <Center flex={1} minHeight="100vh">
-      <CircularProgress isIndeterminate color="#FF9C01" />
+      <CircularProgress mt={"-70px"} isIndeterminate color="#FF9C01" />
     </Center>
   );
 };
