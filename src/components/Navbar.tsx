@@ -73,7 +73,7 @@ const Navbar = () => {
         mx="auto"
       >
         <Flex
-          fontSize="1.5rem"
+          fontSize={["md", "1.5rem"]}
           fontWeight="bold"
           gap={2}
           alignItems={"center"}
