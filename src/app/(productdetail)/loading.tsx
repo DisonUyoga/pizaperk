@@ -15,8 +15,8 @@ const Loading = () => {
         <Skeleton height="400px" />
         <Flex direction={"column"} p={2} gap={[2, 4]}>
           <Skeleton height="50px" />
-          <Skeleton height="20px" w={"30vw"} />
-          <Skeleton height="20px" w={"20vw"} />
+          <Skeleton height="20px" w={"50vw"} />
+          <Skeleton height="20px" w={"40vw"} />
         </Flex>
       </SimpleGrid>
     </Box>
