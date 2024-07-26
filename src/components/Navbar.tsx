@@ -59,7 +59,7 @@ const Navbar = () => {
       width="100%"
       zIndex="1000"
       transition="background-color 0.2s ease, height 0.2s ease"
-      bg={scrollY > 10 ? "gray.700" : bg}
+      bg={scrollY > 10 ? "#050152" : bg}
       color={scrollY > 10 ? "white" : color}
       height={scrollY > 10 ? "60px" : navSize}
     >
