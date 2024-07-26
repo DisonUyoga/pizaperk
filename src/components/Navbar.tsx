@@ -39,7 +39,14 @@ const Links = [
   },
 ];
 
-const NavLink = ({ children, path }: { children: ReactNode; path: string }) => (
+const NavLink = ({
+  children,
+  path,
+}: {
+  children: ReactNode;
+  path: string;
+  onClose: () => void;
+}) => (
   <Link
     as={NextLink}
     px={2}
@@ -112,7 +119,7 @@ const Navbar = () => {
             color={"#fff"}
           >
             {Links.map((link) => (
-              <NavLink key={link.path} path={link.path}>
+              <NavLink key={link.path} path={link.path} onClose={onClose}>
                 {link.display}
               </NavLink>
             ))}
@@ -157,7 +164,7 @@ const Navbar = () => {
         >
           <Stack as={"nav"} spacing={4}>
             {Links.map((link) => (
-              <NavLink key={link.path} path={link.path}>
+              <NavLink key={link.path} path={link.path} onClose={onClose}>
                 {link.display}
               </NavLink>
             ))}
