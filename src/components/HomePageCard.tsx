@@ -11,6 +11,7 @@ import { useAppDispatch } from "@/lib/hook";
 import { useRouter } from "next/navigation";
 import { isNewProduct } from "@/lib/isNewProduct";
 import toast from "react-hot-toast";
+import { motion } from "framer-motion";
 
 interface ProoductCardProps {
   product: Tables<"products">;
@@ -41,7 +42,11 @@ const HomePageCard = ({ product }: ProoductCardProps) => {
   }
 
   return (
-    <div
+    <motion.div
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
+      whileHover={{ scale: 1.05 }} // Scale up slightly on hover
+      transition={{ duration: 0.05 }}
       className={s.card}
       data-aos="fade-up"
       data-aos-anchor-placement="center-bottom"
@@ -65,7 +70,7 @@ const HomePageCard = ({ product }: ProoductCardProps) => {
           Add to Cart
         </Button>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

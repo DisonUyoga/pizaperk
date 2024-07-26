@@ -10,6 +10,7 @@ import img2 from "@/assets/slide2.png";
 import img3 from "@/assets/slide2.png";
 import { Button } from "@chakra-ui/react";
 import { useRouter } from "next/navigation";
+import { motion } from "framer-motion";
 
 const data = [
   {
@@ -62,14 +63,17 @@ const Slider: FC<Props> = ({ className, variant }) => {
           {data[currentSlide].title}
         </h1>
         <Button
+          as={motion.button}
           variant="solid"
           bg="#FF9C01"
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
           className={s.offer_title}
           data-aos="zoom-out-up"
           data-aos-duration="1500"
           onClick={() => router.push("/menu")}
         >
-          menu
+          Menu
         </Button>
         {/* <Button variant="naked">Order Now</Button> */}
       </div>

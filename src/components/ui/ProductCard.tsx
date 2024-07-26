@@ -25,6 +25,7 @@ import AddToCartBtn from "../AddToCartBtn";
 import { addToCart } from "@/features/slices/cartSlice";
 import toast from "react-hot-toast";
 import NextLink from "next/link";
+import { motion } from "framer-motion";
 interface ProductCardProps {
   product: Tables<"products">;
 }
@@ -43,9 +44,14 @@ const ProductCard = ({ product }: ProductCardProps) => {
     length: 30,
   });
   const isNew = isNewProduct(product.created_at);
+  const MotionBox = motion(Box);
   return (
     <LinkBox
-      as={"article"}
+      as={MotionBox}
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
       data-aos="fade-up"
       data-aos-anchor-placement="center-bottom"
       data-aos-duration="1500"

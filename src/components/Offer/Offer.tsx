@@ -10,6 +10,7 @@ import ProductImage from "@/components/ProductImage";
 import Aos from "aos";
 import { Button } from "@chakra-ui/react";
 import { useRouter } from "next/navigation";
+import { motion } from "framer-motion";
 
 interface OfferProps {
   delivery: Tables<"delivery">[];
@@ -79,8 +80,11 @@ const Offer = ({ delivery, products }: OfferProps) => {
         {delivery[0]?.countdown && <CountDown date={delivery[0]?.countdown} />}
 
         <Button
+          as={motion.button}
           variant="solid"
           bg="#FF9C01"
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
           className={s.offer_title}
           data-aos="zoom-out-up"
           data-aos-duration="1500"
