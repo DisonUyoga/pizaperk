@@ -4,6 +4,7 @@ import { createClient } from "@/lib/supabase";
 import toast from "react-hot-toast";
 import { redirect } from "next/navigation";
 import Error from "../error";
+import { Box } from "@chakra-ui/react";
 
 const SupabaseAuth = async () => {
   const user = await currentUser();
@@ -24,7 +25,11 @@ const SupabaseAuth = async () => {
     }
   }
 
-  return <Error name={"Something went wrong please try again"} message="" />;
+  return (
+    <Box minHeight="100vh">
+      <Error name={"Something went wrong please try again"} message="" />
+    </Box>
+  );
 };
 
 export default SupabaseAuth;
