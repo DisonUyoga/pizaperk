@@ -25,7 +25,7 @@ const Navbar = () => {
   const { totalQuantity } = useAppSelector((state) => state.cart);
   const { isOpen: openDrawer, onOpen, onClose } = useDisclosure();
   const [scrollY, setScrollY] = useState(0);
-  const bg = useColorModeValue("#050152", "#161622");
+  const bg = useColorModeValue("#161622", "#161622");
   const color = useColorModeValue("#161622", "white");
   const navSize = useBreakpointValue({ base: "70px", md: "80px" });
 
@@ -84,7 +84,7 @@ const Navbar = () => {
             alt="logo"
             width={100}
             height={100}
-            className={"w-6 h-6 rounded-full"}
+            className={"w-8 h-8 rounded-full"}
           />
           <Link color={"#fff"} href="/">
             PizzaPerk
@@ -125,7 +125,7 @@ const Navbar = () => {
           color={"#fff"}
         >
           {nav_links.map((link, index) => (
-            <Link mr={2} href={link.path}>
+            <Link mr={2} key={index} href={link.path}>
               {link.dispaly}
             </Link>
           ))}
@@ -140,7 +140,7 @@ const Navbar = () => {
           color={"#fff"}
         >
           {nav_links.map((link, index) => (
-            <Link mr={2} fontSize={"sm"} href={link.path}>
+            <Link mr={2} key={index} fontSize={"sm"} href={link.path}>
               {link.dispaly}
             </Link>
           ))}
