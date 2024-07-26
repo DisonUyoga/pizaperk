@@ -1,23 +1,16 @@
+import AosProvider from "@/components/AosProvider";
+import Footer from "@/components/Footer";
+import Navbar from "@/components/Navbar";
+import ReduxProvider from "@/components/ReduxProvider";
+import { createClient } from "@/lib/supabase";
+import { ChakraProvider, Stack } from "@chakra-ui/react";
+import { ClerkProvider } from "@clerk/nextjs";
+import { currentUser } from "@clerk/nextjs/server";
+import "aos/dist/aos.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
-import ReduxProvider from "@/components/ReduxProvider";
 import { Toaster } from "react-hot-toast";
-import { ChakraProvider, Stack } from "@chakra-ui/react";
-import NavBar from "@/components/ui/NavBar";
-import "aos/dist/aos.css";
-import AosProvider from "@/components/AosProvider";
-import {
-  ClerkProvider,
-  SignInButton,
-  SignedIn,
-  SignedOut,
-  UserButton,
-} from "@clerk/nextjs";
-import Footer from "@/components/Footer";
-import { currentUser, auth } from "@clerk/nextjs/server";
-import { createClient } from "@/lib/supabase";
-import Navbar from "@/components/Navbar";
+import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
