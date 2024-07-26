@@ -37,13 +37,13 @@ export default async function RootLayout({
           <ChakraProvider>
             <ReduxProvider>
               <AosProvider>
-                <Stack className="h-screen" bg={"#161622"}>
+                <Stack minHeight="100vh" bg={"#161622"}>
                   <Navbar />
-                  <main className="mt-20 h-screen">
+                  <Stack className="mt-20">
                     {children}
 
                     <Footer />
-                  </main>
+                  </Stack>
                 </Stack>
                 <Toaster
                   position="top-center"

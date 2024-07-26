@@ -77,7 +77,7 @@ const MenuPage = async () => {
           flex={1}
           justifyItems="center"
           alignItems="center"
-          className="h-screen"
+          minHeight="100vh"
         >
           <SimpleGrid
             p="10px"

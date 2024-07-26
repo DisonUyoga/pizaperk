@@ -21,7 +21,7 @@ export default async function Page() {
       py={6}
       mb={4}
       flex={1}
-      mt={["70px", "80px"]}
+      minHeight="100vh"
     >
       <SignIn fallbackRedirectUrl="/supabaseauth" />
     </Center>

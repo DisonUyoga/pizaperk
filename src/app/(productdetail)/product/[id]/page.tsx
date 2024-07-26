@@ -49,7 +49,7 @@ const ProductDetail = async ({ params: { id } }: ProductProps) => {
           h={"100vh"}
           px="10px"
           py="20px"
-          className="h-screen"
+          minHeight="100vh"
         >
           <Box
             maxW="5xl"
