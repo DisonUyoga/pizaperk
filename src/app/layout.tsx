@@ -15,6 +15,8 @@ import {
   UserButton,
 } from "@clerk/nextjs";
 import Footer from "@/components/Footer";
+import { currentUser, auth } from "@clerk/nextjs/server";
+import { createClient } from "@/lib/supabase";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,11 +26,16 @@ export const metadata: Metadata = {
     "Discover PizzaPerk: Your Crave-Worthy Shortcut to Delicious Pizza Bliss!",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
+  auth,
 }: Readonly<{
   children: React.ReactNode;
+  auth: React.ReactNode;
 }>) {
+  const user = await currentUser();
+  const { data: session, error: sessionError } =
+    await createClient().auth.getSession();
   return (
     <html lang="en">
       <body className={inter.className}>
