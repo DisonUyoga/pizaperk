@@ -43,7 +43,7 @@ export default async function Home() {
     >
       <Suspense fallback={<Loading />}>
         {data && delivery && data?.length > 0 && delivery?.length > 0 && (
-          <Stack bg={"#161622"} flex={1}>
+          <Stack bg={"#161622"} flex={1} minHeight="100vh">
             <Offer delivery={delivery as any} products={data} />
 
             <Slider />
