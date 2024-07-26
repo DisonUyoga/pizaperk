@@ -9,6 +9,7 @@ import img1 from "@/assets/slide1.png";
 import img2 from "@/assets/slide2.png";
 import img3 from "@/assets/slide2.png";
 import { Button } from "@chakra-ui/react";
+import { useRouter } from "next/navigation";
 
 const data = [
   {
@@ -36,6 +37,7 @@ interface Props {
 
 const Slider: FC<Props> = ({ className, variant }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const router = useRouter();
   const sliderClassName = cn(s.slider_container, {});
 
   useEffect(() => {
@@ -64,7 +66,8 @@ const Slider: FC<Props> = ({ className, variant }) => {
           bg="#FF9C01"
           className={s.offer_title}
           data-aos="zoom-out-up"
-          data-aos-duration="2000"
+          data-aos-duration="1500"
+          onClick={() => router.push("/menu")}
         >
           Order Now
         </Button>

@@ -9,6 +9,7 @@ import { calcDis } from "@/lib/calcDis";
 import ProductImage from "@/components/ProductImage";
 import Aos from "aos";
 import { Button } from "@chakra-ui/react";
+import { useRouter } from "next/navigation";
 
 interface OfferProps {
   delivery: Tables<"delivery">[];
@@ -17,6 +18,7 @@ interface OfferProps {
 const Offer = ({ delivery, products }: OfferProps) => {
   const [prodctOnOffer, setProductOnOffer] =
     useState<Tables<"products"> | null>();
+  const router = useRouter();
 
   useEffect(() => {
     function checkProductWithHighestDiscount(p: Tables<"products">[]) {
@@ -81,7 +83,8 @@ const Offer = ({ delivery, products }: OfferProps) => {
           bg="#FF9C01"
           className={s.offer_title}
           data-aos="zoom-out-up"
-          data-aos-duration="2000"
+          data-aos-duration="1500"
+          onClick={() => router.push(`/product/${prodctOnOffer?.id}`)}
         >
           Order Now
         </Button>
