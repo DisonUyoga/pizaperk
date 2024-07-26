@@ -129,6 +129,14 @@ const Navbar = () => {
               {link.dispaly}
             </Link>
           ))}
+
+          <Box
+            onClick={() => {
+              onOpen();
+            }}
+          >
+            <FontAwesomeIcon icon={faShoppingCart} color="#fff" />
+          </Box>
           <UserButton />
         </Stack>
       </Flex>
