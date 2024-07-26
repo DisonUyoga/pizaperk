@@ -1,109 +1,135 @@
 "use client";
+import React, { ReactNode } from "react";
 import {
   Box,
   Flex,
-  Link,
-  Stack,
+  HStack,
   IconButton,
-  useColorModeValue,
-  useBreakpointValue,
   useDisclosure,
-  Collapse,
-  VStack,
+  Stack,
+  useColorModeValue,
+  Link,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+
+import NextLink from "next/link";
 import { UserButton } from "@clerk/nextjs";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
-import { useAppSelector } from "@/lib/hook";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import DrawerComponent from "./ui/Drawer";
+import { useAppSelector } from "@/lib/hook";
+const Links = [
+  {
+    display: "Home",
+    path: "/",
+  },
+  {
+    display: "Menu",
+    path: "/menu",
+  },
+  {
+    display: "Orders",
+    path: "/orders",
+  },
+  {
+    display: "Contact",
+    path: "/contact",
+  },
+];
+
+const NavLink = ({ children, path }: { children: ReactNode; path: string }) => (
+  <Link
+    as={NextLink}
+    px={2}
+    py={1}
+    color={"#fff"}
+    rounded={"md"}
+    _hover={{
+      textDecoration: "none",
+      bg: useColorModeValue("gray.200", "gray.700"),
+    }}
+    href={path}
+  >
+    {children}
+  </Link>
+);
 
 const Navbar = () => {
-  const { isOpen, onToggle } = useDisclosure();
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const { totalQuantity } = useAppSelector((state) => state.cart);
-  const { isOpen: openDrawer, onOpen, onClose } = useDisclosure();
-  const [scrollY, setScrollY] = useState(0);
-  const bg = useColorModeValue("#161622", "#161622");
-  const color = useColorModeValue("#161622", "white");
-  const navSize = useBreakpointValue({ base: "70px", md: "80px" });
+  const {
+    isOpen: openDrawer,
+    onOpen: onOpenDrawer,
+    onClose: onCloseDrawer,
+  } = useDisclosure();
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrollY(window.scrollY);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-  const nav_links = [
-    {
-      dispaly: "Home",
-      path: "/",
-    },
-    {
-      dispaly: "Menu",
-      path: "/menu",
-    },
-    {
-      dispaly: "Orders",
-      path: "/orders",
-    },
-  ];
   return (
     <Box
-      position="fixed"
-      top="0"
-      width="100%"
-      zIndex="1000"
-      transition="background-color 0.2s ease, height 0.2s ease"
-      bg={scrollY > 10 ? "#050152" : bg}
-      color={scrollY > 10 ? "white" : color}
-      height={scrollY > 10 ? "60px" : navSize}
+      bg={useColorModeValue("#161622", "#161622")}
+      px={4}
+      position="sticky"
+      top={0}
+      zIndex={1000}
+      boxShadow="md"
     >
-      <Flex
-        as="nav"
-        align="center"
-        justify="space-between"
-        wrap="wrap"
-        padding="1.5rem"
-        maxW="1200px"
-        mx="auto"
-      >
-        <Flex
-          fontSize={["md", "1.5rem"]}
-          fontWeight="bold"
-          gap={2}
-          alignItems={"center"}
-          justify={"center"}
-        >
-          <Image
-            src={"/pizzaman.png"}
-            alt="logo"
-            width={100}
-            height={100}
-            className={"w-8 h-8 rounded-full"}
-          />
-          <Link color={"#fff"} href="/">
-            PizzaPerk
-          </Link>
-        </Flex>
-        <Box display={{ base: "block", md: "none" }}>
-          <UserButton />
-        </Box>
-        <Box
-          display={{ base: "block", md: "none" }}
-          onClick={() => {
-            onOpen();
-          }}
-        >
-          <FontAwesomeIcon icon={faShoppingCart} color="#fff" />
-        </Box>
+      <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
+        <HStack spacing={8} alignItems={"center"} justify={"center"}>
+          <Flex
+            fontSize={["md", "1.5rem"]}
+            fontWeight="bold"
+            gap={2}
+            alignItems={"center"}
+            justify={"center"}
+          >
+            <Link color={"#fff"} href="/">
+              <Image
+                src={"/pizzaman.png"}
+                alt="logo"
+                width={100}
+                height={100}
+                className={"w-8 h-8 rounded-full"}
+              />
+            </Link>
+          </Flex>
+          <Box display={{ base: "block", md: "none" }}>
+            <UserButton />
+          </Box>
+          <Box
+            display={{ base: "block", md: "none" }}
+            onClick={() => {
+              onOpen();
+            }}
+          >
+            <FontAwesomeIcon icon={faShoppingCart} color="#fff" />
+          </Box>
+          <HStack
+            as={"nav"}
+            spacing={4}
+            display={{ base: "none", md: "flex" }}
+            color={"#fff"}
+          >
+            {Links.map((link) => (
+              <NavLink key={link.path} path={link.path}>
+                {link.display}
+              </NavLink>
+            ))}
+
+            <Box
+              display={{ base: "none", md: "block" }}
+              onClick={() => {
+                onOpenDrawer();
+              }}
+            >
+              <FontAwesomeIcon icon={faShoppingCart} color="#fff" />
+            </Box>
+            <Box display={{ base: "none", md: "block" }} ml={2}>
+              <UserButton />
+            </Box>
+          </HStack>
+        </HStack>
         <IconButton
-          display={{ base: "block", md: "none" }}
-          onClick={onToggle}
+          size={"md"}
           icon={
             isOpen ? (
               <CloseIcon color={"#FF9001"} />
@@ -111,50 +137,25 @@ const Navbar = () => {
               <HamburgerIcon color={"#FF9001"} />
             )
           }
-          variant="ghost"
-          aria-label="Toggle Navigation"
-          color={"black"}
-        />
-        <Stack
-          direction={{ base: "column", md: "row" }}
-          display={{ base: "none", md: "flex" }}
-          width={{ base: "full", md: "auto" }}
-          alignItems="center"
-          mt={{ base: 4, md: 0 }}
-          spacing={6}
-          color={"#fff"}
-        >
-          {nav_links.map((link, index) => (
-            <Link mr={2} key={index} href={link.path}>
-              {link.dispaly}
-            </Link>
-          ))}
-
-          <Box
-            onClick={() => {
-              onOpen();
-            }}
-          >
-            <FontAwesomeIcon icon={faShoppingCart} color="#fff" />
-          </Box>
-          <UserButton />
-        </Stack>
-      </Flex>
-      <Collapse in={isOpen} animateOpacity>
-        <VStack
-          bg={useColorModeValue("#FF9001", "gray.900")}
-          p={4}
+          aria-label={"Open Menu"}
+          color={"#050152"}
           display={{ md: "none" }}
-          color={"#fff"}
-        >
-          {nav_links.map((link, index) => (
-            <Link mr={2} key={index} fontSize={"sm"} href={link.path}>
-              {link.dispaly}
-            </Link>
-          ))}
-        </VStack>
-      </Collapse>
-      <DrawerComponent isOpen={openDrawer} onClose={onClose} />
+          onClick={isOpen ? onClose : onOpen}
+        />
+      </Flex>
+
+      {isOpen ? (
+        <Box pb={4} display={{ md: "none" }}>
+          <Stack as={"nav"} spacing={4}>
+            {Links.map((link) => (
+              <NavLink key={link.path} path={link.path}>
+                {link.display}
+              </NavLink>
+            ))}
+          </Stack>
+        </Box>
+      ) : null}
+      <DrawerComponent isOpen={openDrawer} onClose={onCloseDrawer} />
     </Box>
   );
 };

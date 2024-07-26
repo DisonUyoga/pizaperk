@@ -39,7 +39,7 @@ export default async function RootLayout({
               <AosProvider>
                 <Stack minHeight="100vh" bg={"#161622"}>
                   <Navbar />
-                  <Stack className="mt-20">
+                  <Stack>
                     {children}
 
                     <Footer />
