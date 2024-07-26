@@ -157,7 +157,7 @@ const Navbar = () => {
             )
           }
           aria-label={"Open Menu"}
-          bg={"#050152"}
+          bg={"none"}
           display={{ md: "none" }}
           onClick={isOpen ? onClose : onOpen}
         />
