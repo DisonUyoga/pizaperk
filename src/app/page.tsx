@@ -8,6 +8,8 @@ import { Stack } from "@chakra-ui/react";
 import { Suspense } from "react";
 import Error from "./error";
 import Loading from "./loading";
+import { currentUser } from "@clerk/nextjs/server";
+import { redirect } from "next/navigation";
 
 interface HomeProps {
   searchParams: {
@@ -16,6 +18,16 @@ interface HomeProps {
 }
 
 export default async function Home() {
+  const user = await currentUser();
+  const { data: session, error: sessionError } =
+    await createClient().auth.getSession();
+  // check whether clerk user is logged in
+  if (!user) {
+    return redirect("/sign-in");
+  }
+  if (!session.session) {
+    return redirect("/sign-in");
+  }
   const { data, error } = await createClient()
     .from("products")
     .select("*, categories(*)")
