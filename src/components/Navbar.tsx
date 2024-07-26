@@ -42,10 +42,11 @@ const Links = [
 const NavLink = ({
   children,
   path,
+  toggleClose,
 }: {
   children: ReactNode;
   path: string;
-  onClose: () => void;
+  toggleClose: () => void;
 }) => (
   <Link
     as={NextLink}
@@ -58,6 +59,7 @@ const NavLink = ({
       bg: useColorModeValue("gray.200", "gray.700"),
     }}
     href={path}
+    onClick={() => toggleClose()}
   >
     {children}
   </Link>
@@ -72,6 +74,10 @@ const Navbar = () => {
     onClose: onCloseDrawer,
   } = useDisclosure();
   const MotionBox = motion(Box);
+  const toggleClose = () => {
+    console.log("bbbbbkuguigikbjvuygkbj");
+    onClose();
+  };
 
   return (
     <Box
@@ -119,7 +125,11 @@ const Navbar = () => {
             color={"#fff"}
           >
             {Links.map((link) => (
-              <NavLink key={link.path} path={link.path} onClose={onClose}>
+              <NavLink
+                key={link.path}
+                path={link.path}
+                toggleClose={toggleClose}
+              >
                 {link.display}
               </NavLink>
             ))}
@@ -147,7 +157,7 @@ const Navbar = () => {
             )
           }
           aria-label={"Open Menu"}
-          color={"#050152"}
+          bg={"#050152"}
           display={{ md: "none" }}
           onClick={isOpen ? onClose : onOpen}
         />
@@ -164,7 +174,11 @@ const Navbar = () => {
         >
           <Stack as={"nav"} spacing={4}>
             {Links.map((link) => (
-              <NavLink key={link.path} path={link.path} onClose={onClose}>
+              <NavLink
+                key={link.path}
+                path={link.path}
+                toggleClose={toggleClose}
+              >
                 {link.display}
               </NavLink>
             ))}
