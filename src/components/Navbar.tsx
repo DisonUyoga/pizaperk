@@ -19,6 +19,7 @@ import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import DrawerComponent from "./ui/Drawer";
 import { useAppSelector } from "@/lib/hook";
+import { motion } from "framer-motion";
 const Links = [
   {
     display: "Home",
@@ -63,6 +64,7 @@ const Navbar = () => {
     onOpen: onOpenDrawer,
     onClose: onCloseDrawer,
   } = useDisclosure();
+  const MotionBox = motion(Box);
 
   return (
     <Box
@@ -145,7 +147,14 @@ const Navbar = () => {
       </Flex>
 
       {isOpen ? (
-        <Box pb={4} display={{ md: "none" }}>
+        <MotionBox
+          pb={4}
+          display={{ md: "none" }}
+          initial={{ opacity: 0, height: 0 }}
+          animate={{ opacity: 1, height: "auto" }}
+          exit={{ opacity: 0, height: 0 }}
+          transition={{ duration: 0.3 }}
+        >
           <Stack as={"nav"} spacing={4}>
             {Links.map((link) => (
               <NavLink key={link.path} path={link.path}>
@@ -153,7 +162,7 @@ const Navbar = () => {
               </NavLink>
             ))}
           </Stack>
-        </Box>
+        </MotionBox>
       ) : null}
       <DrawerComponent isOpen={openDrawer} onClose={onCloseDrawer} />
     </Box>
