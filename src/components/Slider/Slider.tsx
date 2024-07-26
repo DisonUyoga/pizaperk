@@ -69,7 +69,7 @@ const Slider: FC<Props> = ({ className, variant }) => {
           data-aos-duration="1500"
           onClick={() => router.push("/menu")}
         >
-          Order Now
+          menu
         </Button>
         {/* <Button variant="naked">Order Now</Button> */}
       </div>
