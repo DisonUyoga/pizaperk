@@ -1,19 +1,13 @@
-import { store } from "@/features/store";
 import { createClient } from "@/lib/supabase";
-import { Session } from "@supabase/supabase-js";
 import { ErrorBoundary } from "react-error-boundary";
 
-import Image from "next/image";
-import { redirect, useSearchParams } from "next/navigation";
-import Error from "./error";
-import { Suspense } from "react";
-import Loading from "./loading";
 import Featured from "@/components/Featured";
-import { downloadImage } from "./action";
-import { Stack } from "@chakra-ui/react";
-import Slider from "@/components/Slider";
 import Offer from "@/components/Offer";
-import { currentUser, auth } from "@clerk/nextjs/server";
+import Slider from "@/components/Slider";
+import { Stack } from "@chakra-ui/react";
+import { Suspense } from "react";
+import Error from "./error";
+import Loading from "./loading";
 
 interface HomeProps {
   searchParams: {
@@ -22,17 +16,6 @@ interface HomeProps {
 }
 
 export default async function Home() {
-  // const user = await currentUser();
-  // const { data: session, error: sessionError } =
-  //   await createClient().auth.getSession();
-  // // check whether clerk user is logged in
-  // if (!user) {
-  //   return redirect("/sign-in");
-  // }
-  // if (!session.session) {
-  //   return redirect("/sign-in");
-  // }
-
   const { data, error } = await createClient()
     .from("products")
     .select("*, categories(*)")
@@ -48,7 +31,7 @@ export default async function Home() {
     >
       <Suspense fallback={<Loading />}>
         {data && delivery && data?.length > 0 && delivery?.length > 0 && (
-          <Stack bg={"#161622"}>
+          <Stack bg={"#161622"} flex={1}>
             <Offer delivery={delivery as any} products={data} />
 
             <Slider />

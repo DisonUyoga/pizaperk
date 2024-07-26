@@ -3,7 +3,7 @@ import React from "react";
 
 const Loading = () => {
   return (
-    <Box flex={1}>
+    <Box flex={1} className="h-screen">
       <SimpleGrid
         spacing={2}
         minChildWidth="300px"

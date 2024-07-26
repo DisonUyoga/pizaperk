@@ -49,6 +49,7 @@ const CategoryPage = async ({ params: { category } }: CategoryPageProps) => {
           flex={1}
           justifyItems="center"
           alignItems="center"
+          className="h-screen"
         >
           <BackButton />
           {data && data[0].categories?.category && (

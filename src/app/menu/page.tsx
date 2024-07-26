@@ -71,50 +71,59 @@ const MenuPage = async () => {
       }
     >
       <Suspense fallback={<Loading />}>
-        <SimpleGrid
+        <Box
           p="10px"
-          spacing={10}
-          minChildWidth="300px"
           bg="#161622"
-          position={"relative"}
-          py={"20px"}
+          flex={1}
+          justifyItems="center"
+          alignItems="center"
+          className="h-screen"
         >
-          {categories &&
-            data &&
-            categories.map((item) => {
-              const c = checkIfCategoryHasProduct(item, data);
-              if (c.includes(true)) {
-                return (
-                  <Card key={item.id} borderTop="4px" borderColor="#FF9C01">
-                    <CardHeader>
-                      <Heading
-                        as="h3"
-                        size="sm"
-                        position={"absolute"}
-                        zIndex={50}
-                        color={"white"}
+          <SimpleGrid
+            p="10px"
+            spacing={10}
+            minChildWidth="300px"
+            bg="#161622"
+            position={"relative"}
+            py={"20px"}
+          >
+            {categories &&
+              data &&
+              categories.map((item) => {
+                const c = checkIfCategoryHasProduct(item, data);
+                if (c.includes(true)) {
+                  return (
+                    <Card key={item.id} borderTop="4px" borderColor="#FF9C01">
+                      <CardHeader>
+                        <Heading
+                          as="h3"
+                          size="sm"
+                          position={"absolute"}
+                          zIndex={50}
+                          color={"white"}
+                        >
+                          {item.category}
+                        </Heading>
+                      </CardHeader>
+                      <Link
+                        as={NextLink}
+                        href={`/menu/${item.id}?category=${item.category}`}
                       >
-                        {item.category}
-                      </Heading>
-                    </CardHeader>
-                    <Link
-                      as={NextLink}
-                      href={`/menu/${item.id}?category=${item.category}`}
-                    >
-                      <CardBody>
-                        {item.image && menu[0].img && (
-                          <ProductImage
-                            fallback={menu[0].img}
-                            path={item.image}
-                          />
-                        )}
-                      </CardBody>
-                    </Link>
-                  </Card>
-                );
-              }
-            })}
-        </SimpleGrid>
+                        <CardBody>
+                          {item.image && menu[0].img && (
+                            <ProductImage
+                              fallback={menu[0].img}
+                              path={item.image}
+                            />
+                          )}
+                        </CardBody>
+                      </Link>
+                    </Card>
+                  );
+                }
+              })}
+          </SimpleGrid>
+        </Box>
       </Suspense>
     </ErrorBoundary>
   );

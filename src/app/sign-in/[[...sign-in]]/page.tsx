@@ -14,8 +14,16 @@ export default async function Page() {
   }
 
   return (
-    <Center bg="#161622" color="white" px={4} py={6} mb={4} flex={1}>
-      <SignIn fallbackRedirectUrl="/supabaseauth"  />
+    <Center
+      bg="#161622"
+      color="white"
+      px={4}
+      py={6}
+      mb={4}
+      flex={1}
+      mt={["70px", "80px"]}
+    >
+      <SignIn fallbackRedirectUrl="/supabaseauth" />
     </Center>
   );
 }

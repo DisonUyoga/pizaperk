@@ -17,6 +17,7 @@ import {
 import Footer from "@/components/Footer";
 import { currentUser, auth } from "@clerk/nextjs/server";
 import { createClient } from "@/lib/supabase";
+import Navbar from "@/components/Navbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -43,10 +44,13 @@ export default async function RootLayout({
           <ChakraProvider>
             <ReduxProvider>
               <AosProvider>
-                <Stack h={"100vh"} bg={"#161622"}>
-                  <NavBar />
-                  {children}
-                  <Footer />
+                <Stack className="h-screen" bg={"#161622"}>
+                  <Navbar />
+                  <main className="mt-20 h-screen">
+                    {children}
+
+                    <Footer />
+                  </main>
                 </Stack>
                 <Toaster
                   position="top-center"

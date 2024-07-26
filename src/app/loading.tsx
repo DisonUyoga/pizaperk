@@ -3,7 +3,7 @@ import { Container } from "postcss";
 
 const Loading = () => {
   return (
-    <Center flex={1}>
+    <Center flex={1} className="h-screen">
       <CircularProgress isIndeterminate color="#FF9C01" />
     </Center>
   );
