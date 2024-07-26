@@ -13,7 +13,7 @@ export default async function Page() {
     return redirect("/supabaseauth");
   }
   return (
-    <Center bg="#161622" color="white" px={4} py={6} mb={4}  minHeight="100vh">
+    <Center bg="#161622" color="white" px={4} py={6} mb={4}>
       <SignUp fallbackRedirectUrl="/supabaseauth" />
     </Center>
   );
